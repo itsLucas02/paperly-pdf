@@ -1,0 +1,4 @@
+import type { MetadataRoute } from "next";
+export default function manifest(): MetadataRoute.Manifest {
+  return { name: "paperly — Your everyday PDF toolkit", short_name: "paperly", description: "Every PDF tool you need, in one happy place. Private, free, and right in your browser.", start_url: "/", scope: "/", display: "standalone", background_color: "#fafbf9", theme_color: "#fafbf9", orientation: "any", categories: ["productivity", "utilities"], icons: [{ src: "/icon-192.png", sizes: "192x192", type: "image/png", purpose: "any" }, { src: "/icon-512.png", sizes: "512x512", type: "image/png", purpose: "any" }, { src: "/icon-maskable-512.png", sizes: "512x512", type: "image/png", purpose: "maskable" }], shortcuts: [{ name: "Merge PDF", url: "/?tool=merge", description: "Combine your PDFs" }, { name: "My files", url: "/?view=history", description: "Your recent PDF tasks" }] };
+}
