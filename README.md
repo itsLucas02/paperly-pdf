@@ -32,12 +32,12 @@ paperly is a browser-based PDF toolkit with **20 tools** that run entirely clien
 
 | Organize | Convert | Edit & optimize | Security |
 | --- | --- | --- | --- |
-| [Merge PDF](/?tool=merge) | [PDF to Word](/?tool=pdf-to-word) | [Compress PDF](/?tool=compress) | [Protect PDF](/?tool=protect) |
-| [Split PDF](/?tool=split) | [Word to PDF](/?tool=word-to-pdf) | [Watermark PDF](/?tool=watermark) | [Unlock PDF](/?tool=unlock) |
-| [Rotate PDF](/?tool=rotate) | [JPG to PDF](/?tool=jpg-to-pdf) | [Page numbers](/?tool=page-numbers) | |
-| [Organize PDF](/?tool=organize) | [PDF to JPG](/?tool=pdf-to-jpg) | [Crop PDF](/?tool=crop) | |
-| [Remove pages](/?tool=remove) | [PDF to PNG](/?tool=pdf-to-png) | [Repair PDF](/?tool=repair) | |
-| [Extract pages](/?tool=extract) | [PDF to text](/?tool=pdf-to-text) | [Flatten PDF](/?tool=flatten) | |
+| Merge PDF | PDF to Word | Compress PDF | Protect PDF |
+| Split PDF | Word to PDF | Watermark PDF | Unlock PDF |
+| Rotate PDF | JPG to PDF | Page numbers | |
+| Organize PDF | PDF to JPG | Crop PDF | |
+| Remove pages | PDF to PNG | Repair PDF | |
+| Extract pages | PDF to text | Flatten PDF | |
 
 Extras: searchable categories, persistent favorites, guest workspace settings, private metadata-only history, built-in sample documents, drag-and-drop file ordering, and downloadable results.
 
