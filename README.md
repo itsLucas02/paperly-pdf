@@ -8,6 +8,8 @@
 
 A free, private, installable PDF workspace. **Every file is processed on your own device** — nothing is uploaded, stored, or sent to a server.
 
+### [▶ Open paperly — paperly-pdf-neon.vercel.app](https://paperly-pdf-neon.vercel.app)
+
 [![Next.js](https://img.shields.io/badge/Next.js-16-000000?logo=next.js&logoColor=white)](https://nextjs.org)
 [![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)](https://react.dev)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org)
@@ -71,16 +73,18 @@ Open <http://localhost:3000>. The database is optional: without `DATABASE_URL` t
 ## Deploy to Vercel
 
 1. Push this repository to GitHub and import it in Vercel.
-2. In the Vercel dashboard, add a **Postgres database from the Marketplace (Neon)** to the project. Vercel injects `DATABASE_URL` automatically.
+2. Add a **Postgres database** (Supabase, Neon, or any Postgres) and set `DATABASE_URL` on the project. Vercel injects it at runtime.
 3. Apply the schema to the production database once:
    ```bash
-   DATABASE_URL="<neon-url>" npx drizzle-kit push
+   DATABASE_URL="<your-postgres-url>" npx drizzle-kit push
    ```
 4. Deploy. No other environment variables or build settings are required.
 
 Without a database the deploy still succeeds and every PDF tool works; only favorites/history/feedback are disabled (they fall back to browser local storage).
 
-The concrete production setup (Vercel team, Supabase project, secrets) is recorded in [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md).
+Where the credentials for the live deployment are stored, and how to deploy and
+verify it, is documented in [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md). That file
+records secret **names and locations** only — no credentials are committed.
 
 ## Project structure
 
