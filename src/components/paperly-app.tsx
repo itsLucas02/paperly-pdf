@@ -54,8 +54,13 @@ export function PaperlyApp() {
       if (!favoriteTouched.current) setFavorites(data.workspace.favorites);
       setWorkspaceName(data.workspace.name);
       const merged: HistoryItem[] = data.history;
-      const unsaved = localHistory.current.filter((item) => !merged.some((saved) => saved.id === item.id) && item.id.startsWith("local-"));
-      setHistory([...unsaved, ...merged].slice(0, 50));
+      // Merge with whatever is already in state instead of replacing it, so a job that
+      // finished while this fetch was in flight is never dropped from the list.
+      setHistory((previous) => {
+        const unsynced = previous.filter((item) => item.id.startsWith("local-") && !merged.some((saved) => saved.id === item.id));
+        return [...unsynced, ...merged].slice(0, 50);
+      });
+      localHistory.current = localHistory.current.filter((item) => !merged.some((saved) => saved.id === item.id));
     }).catch(() => { /* File processing remains available without a network. */ });
     const params = new URLSearchParams(window.location.search);
     const requestedTool = tools.find((tool) => tool.id === params.get("tool"));
