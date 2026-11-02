@@ -41,7 +41,9 @@ export function PaperlyApp() {
       // eslint-disable-next-line react-hooks/set-state-in-effect -- one-time hydration from localStorage, an external store
       if (Array.isArray(savedFavorites)) setFavorites(savedFavorites.filter((id: unknown) => typeof id === "string" && tools.some((tool) => tool.id === id)));
       const savedHistory = JSON.parse(localStorage.getItem("paperly-history") ?? "[]");
-      if (Array.isArray(savedHistory)) { localHistory.current = savedHistory.filter((item) => typeof item?.id === "string" && item.id.startsWith("local-")); setHistory(savedHistory); }
+      // Only locally-created items are unsynced; server items are re-fetched below so stale
+      // entries from another workspace's cookie can never leak into this workspace's list.
+      if (Array.isArray(savedHistory)) { const unsaved = savedHistory.filter((item) => typeof item?.id === "string" && item.id.startsWith("local-")); localHistory.current = unsaved; setHistory(unsaved); }
       setWorkspaceName(localStorage.getItem("paperly-name") ?? initialWorkspace);
     } catch { /* The app also works when local storage is unavailable. */ }
     setStorageReady(true);
