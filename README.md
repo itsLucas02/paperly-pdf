@@ -80,6 +80,8 @@ Open <http://localhost:3000>. The database is optional: without `DATABASE_URL` t
 
 Without a database the deploy still succeeds and every PDF tool works; only favorites/history/feedback are disabled (they fall back to browser local storage).
 
+The concrete production setup (Vercel team, Supabase project, secrets) is recorded in [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md).
+
 ## Project structure
 
 ```
