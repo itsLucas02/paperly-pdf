@@ -54,13 +54,14 @@ export function PaperlyApp() {
       if (!favoriteTouched.current) setFavorites(data.workspace.favorites);
       setWorkspaceName(data.workspace.name);
       const merged: HistoryItem[] = data.history;
-      // Merge with whatever is already in state instead of replacing it, so a job that
-      // finished while this fetch was in flight is never dropped from the list.
-      setHistory((previous) => {
-        const unsynced = previous.filter((item) => item.id.startsWith("local-") && !merged.some((saved) => saved.id === item.id));
-        return [...unsynced, ...merged].slice(0, 50);
-      });
-      localHistory.current = localHistory.current.filter((item) => !merged.some((saved) => saved.id === item.id));
+      // A job's save can be interrupted by navigation, leaving a local copy on the device
+      // even though the row reached the database. Match on content as well as id so those
+      // interrupted saves are recognised as already-saved and do not linger in the list.
+      const signature = (item: HistoryItem) => `${item.toolId}|${item.fileName}|${item.outputSize}|${item.pageCount}`;
+      const savedSignatures = new Set(merged.map(signature));
+      const isUnsynced = (item: HistoryItem) => item.id.startsWith("local-") && !merged.some((saved) => saved.id === item.id) && !savedSignatures.has(signature(item));
+      setHistory((previous) => [...previous.filter(isUnsynced), ...merged].slice(0, 50));
+      localHistory.current = localHistory.current.filter(isUnsynced);
     }).catch(() => { /* File processing remains available without a network. */ });
     const params = new URLSearchParams(window.location.search);
     const requestedTool = tools.find((tool) => tool.id === params.get("tool"));
