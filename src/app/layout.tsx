@@ -9,6 +9,7 @@ import "./globals.css";
 import { PWARegistration } from "@/components/pwa-registration";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://paperly-pdf-neon.vercel.app"),
   title: "paperly — All your PDF tools. One happy place.",
   description: "Every tool you need to work with PDFs, in one happy place. Merge, split, compress, convert, rotate, protect and watermark PDFs. Free, private, and right in your browser.",
   applicationName: "paperly",
@@ -16,7 +17,8 @@ export const metadata: Metadata = {
   icons: { icon: [{ url: "/icon.svg", type: "image/svg+xml" }, { url: "/icon-192.png", sizes: "192x192", type: "image/png" }], apple: "/icon-192.png" },
   appleWebApp: { capable: true, statusBarStyle: "default", title: "paperly" },
   formatDetection: { telephone: false },
-  openGraph: { title: "paperly — Your everyday PDF companion", description: "Less PDF hassle. More getting things done. 20 free PDF tools, processed privately on your device.", siteName: "paperly", type: "website" },
+  openGraph: { title: "paperly — Your everyday PDF companion", description: "Less PDF hassle. More getting things done. 20 free PDF tools, processed privately on your device.", siteName: "paperly", type: "website", images: [{ url: "/og-image.png", width: 1280, height: 640, alt: "paperly — All your PDF tools. One happy place." }] },
+  twitter: { card: "summary_large_image", images: ["/og-image.png"] },
 };
 export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: "#fafbf9", viewportFit: "cover" };
 
